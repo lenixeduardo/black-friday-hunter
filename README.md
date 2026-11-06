@@ -1,39 +1,42 @@
-# Black Friday Hunter — PWA demonstrativa + skill Codex
+# Black Friday Hunter
 
-Este repositório local contém o protótipo PWA executável, design e assets aprovados, skill, gerador de briefs e testes. **Não é produção nem possui feeds de ofertas ou WhatsApp reais.**
+Repositório do **Black Friday Hunter**, aplicativo de monitoramento de ofertas com prioridade para Shopee e Mercado Livre, personalização TCG e planejamento de alertas e recompensas.
+
+## Status de implantação
+
+**Protótipo publicamente versionado, não MVP de produção.** O projeto remoto possui uma interface PWA white mode inicial em `app/index.html`, manifesto, service worker, skill para Codex, design e testes estruturais. Esta publicação não inclui ainda os 9 PNGs originais, o protótipo local completo e todos os scripts detalhados de QA disponíveis no pacote entregue na conversa.
+
+O espaço da hero usa atualmente uma ilustração SVG simplificada como substituto visual; a animação e a arte original do Magikarp devem ser integradas a partir de `assets/home/04-magikarp-scooter.png` quando os assets forem sincronizados.
+
+**Não há promoções ao vivo, login, histórico, pontuação de servidor ou mensagens WhatsApp em funcionamento.** Nunca apresente exemplos como descontos reais nem conceda pontos sem verificação no backend.
 
 ## Execução local
 
 ```bash
+git clone https://github.com/lenixeduardo/black-friday-hunter.git
+cd black-friday-hunter
 python -m http.server 8765
-# navegador: http://127.0.0.1:8765/app/
+# Abrir http://localhost:8765/app/
 ```
 
-Para instalar a PWA, abra em navegador compatível num contexto seguro (localhost ou HTTPS). Preferência de interesse TCG/Tecnologia persistida apenas neste dispositivo.
-
-## Executar agente e QA
+## Verificação
 
 ```bash
-python scripts/agent.py plan "Instale a skill e teste o Black Friday Hunter" --output artifacts/plan-install
-python -m pytest -q
-python scripts/qa_assets.py --dir assets/home --out artifacts/qa-assets.json
-python scripts/qa_web.py --url http://127.0.0.1:8765/app/ --out artifacts/web-app
+python -m unittest discover -s tests -p "test_*.py" -v
+python -m json.tool app/manifest.webmanifest
 ```
 
-A skill está instalada neste repositório em `.agents/skills/black-friday-hunter/SKILL.md`, referenciada por `AGENTS.md`. O script `agent.py` gera prompts; não invoca um LLM automaticamente.
+O workflow `.github/workflows/qa.yml` executa essas verificações a cada push/PR. Esses checks são estruturais e não substituem os testes no navegador ou as integrações reais.
 
-## Limitações
+## Agentes
 
-- **Publicação remota pendente:** repositório Git local preparado com o nome `black-friday-hunter`. Consulte `PUBLISH_GITHUB.md` para criar o repositório e publicar no GitHub.
-- Nenhuma fonte de oferta, integração de afiliados ou link rastreável ativo.
-- Sem crédito real de pontos, backend, autenticação ou resgates. Saldos dos assets gráficos são ilustrativos e não usados como dados da UI.
-- Envio de WhatsApp e e-mail indisponíveis até configuração de credenciais, consentimento e templates.
-- O protótipo atual usa HTML/CSS/JS como prova visual, **não Next.js**; a migração permanece parte da implementação do produto.
+Consulte `AGENTS.md`, `DESIGN.md` e `.agents/skills/black-friday-hunter/SKILL.md`. O fluxo esperado é: **especificação → implementação → QA independente → correção → evidências**.
 
-## Organização
+## Próximas integrações
 
-- `app/`: frontend PWA inicial funcional de navegação e preferências.
-- `assets/home/`: assets individuais transparentes e prancha.
-- `.agents/skills/black-friday-hunter/`: skill de desenvolvimento/QA.
-- `AGENTS.md`, `DESIGN.md`: instruções e design source of truth.
-- `scripts/`, `tests/`: automação de briefs e testes.
+1. Sincronizar os PNGs originais da home e o restante do pacote local.
+2. Substituir a arte provisória da hero pelo Magikarp aprovado.
+3. Ligar Next.js/Supabase e fontes autorizadas de Shopee/Mercado Livre.
+4. Criar ledger de pontos no backend e validação antiabuso.
+5. Integrar WhatsApp Business Cloud API após consentimento, credenciais e templates.
+6. Validar experiência real em 390, 768 e 1440 px.
