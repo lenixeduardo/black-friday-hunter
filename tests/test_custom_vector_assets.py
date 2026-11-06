@@ -44,7 +44,7 @@ def test_every_asset_is_independent_valid_vector_svg():
         assert root.attrib["viewBox"] == "0 0 64 64"
         assert root.attrib.get("fill") == "none"
         assert not list(root.iter("{http://www.w3.org/2000/svg}image"))
-        assert "http://" not in file.read_text(encoding="utf-8")
+        assert 'href="http' not in file.read_text(encoding="utf-8")
         assert "href=" not in file.read_text(encoding="utf-8")
 
 
