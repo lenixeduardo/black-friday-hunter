@@ -1,0 +1,18 @@
+{
+  "name": "Black Friday Hunter",
+  "short_name": "BF Hunter",
+  "description": "Protótipo de monitoramento de ofertas com interesse TCG",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/app/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
