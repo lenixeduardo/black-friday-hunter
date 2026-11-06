@@ -53,7 +53,8 @@ def main():
                 page.locator("#menu-toggle").click()
                 assert page.locator("#pwa-install").is_visible()
                 assert page.locator("#pwa-install").get_attribute("type")=="button"
-                page.locator("#menu-toggle").click()
+                page.locator("#drawer-close").click()
+                assert page.locator("#drawer").is_hidden()
                 page.screenshot(path=str(output/f"pwa-home-{width}.png"),full_page=True,
                     animations="disabled")
                 # Ensure the first app visit pre-caches public assets for offline mode.
