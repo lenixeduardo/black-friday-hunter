@@ -99,7 +99,11 @@ def main() -> None:
                     assert page.locator("#mobile-tcg-art").is_hidden()
 
                 # Avoid transient keyboard focus rings in full-page visual evidence.
-                page.evaluate("""() => { document.activeElement?.blur(); window.scrollTo(0,0); }""")
+                page.evaluate("""() => {
+                    document.activeElement?.blur();
+                    for (const rail of document.querySelectorAll('.offers')) rail.scrollLeft = 0;
+                    window.scrollTo(0,0);
+                }""")
                 page.wait_for_timeout(250)
                 page.screenshot(path=str(output / f"home-{width}.png"), full_page=True,
                     animations="disabled", timeout=45000)
