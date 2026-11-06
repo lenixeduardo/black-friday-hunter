@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title"><title id="title">Moeda de pontos Hunter</title>
+<defs><linearGradient id="gold" x1="12" y1="6" x2="48" y2="59"><stop stop-color="#FFE299"/><stop offset=".47" stop-color="#F3B337"/><stop offset="1" stop-color="#D98A15"/></linearGradient></defs>
+<path d="M32 3 45 7l10 10 6 15-6 15-10 10-13 4-13-4L9 47 3 32l6-15L19 7 32 3Z" fill="url(#gold)" stroke="#88500F" stroke-width="1.8"/>
+<circle cx="32" cy="32" r="23" fill="#FFFAED" stroke="#A96711" stroke-width="2.5"/>
+<circle cx="32" cy="32" r="19" stroke="#F0C66D" stroke-width="1.5"/>
+<path d="M22 20h6v9h8v-9h6v24h-6v-9h-8v9h-6V20Z" fill="#16161B"/>
+<path d="M17 14 14 17M47 14l3 3M14 47l3 3M50 47l-3 3" stroke="#FFF7DC" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

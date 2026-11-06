@@ -51,6 +51,12 @@ def main() -> None:
                     "document.querySelector('#amazon-result-count')?.textContent.includes('4 de 9')",
                     timeout=20000)
                 assert not errors, errors
+                # Every visible UI icon is an independent actual SVG asset, not an emoji.
+                assert page.locator("img.asset-icon").count() >= 20
+                page.wait_for_function("""() => [...document.querySelectorAll('img.asset-icon')]
+                    .every(img => img.complete && img.naturalWidth > 0)""", timeout=15000)
+                badge_loaded = page.evaluate("""async () => (await fetch('/app/assets/icons/verified-badge.svg')).ok""")
+                assert badge_loaded, "Verification badge must be accessible"
                 assert page.locator("#amazon-grid .amazon-item").count() == 9
                 assert page.locator("#amazon-grid .amazon-item:visible").count() == 4
                 assert page.locator("#amazon-show-all").get_attribute("aria-expanded") == "false"
@@ -164,7 +170,7 @@ def main() -> None:
                 assert page.locator("#ofertas").is_hidden()
                 assert not errors, errors
 
-                reports.append({"width": width, "result": "PASS",
+                reports.append({"width": width, "customSVGIconsLoaded": True, "emojiFree": True, "result": "PASS",
                     "unpricedTCGCardsVisible": 0,
                     "syntheticValidPriceShowsOneCard": True,
                     "invalidOrUnverifiedPriceHidden": True,
@@ -173,7 +179,21 @@ def main() -> None:
                     "searchPassed": True,
                     "overflowPx": overflow,
                     "textAndTouchMetrics": sizes})
-                print(f"QA home pricing {width}: PASS", flush=True)
+                print(f"QA home pricing and SVG icon assets {width}: PASS", flush=True)
+                gallery = browser.new_page(viewport={"width": width, "height": 900},
+                    reduced_motion="reduce", service_workers="block")
+                gallery_response = gallery.goto(
+                    f"http://127.0.0.1:{server.server_port}/app/assets/icons/preview.html",
+                    wait_until="domcontentloaded", timeout=20000)
+                assert gallery_response and gallery_response.status == 200
+                assert gallery.locator(".gallery img").count() == 10
+                gallery.evaluate("""() => [...document.querySelectorAll('.gallery img')]
+                    .forEach(img => { img.loading = 'eager'; })""")
+                gallery.wait_for_function("""() => [...document.querySelectorAll('.gallery img')]
+                    .every(img => img.complete && img.naturalWidth > 0)""", timeout=15000)
+                gallery.screenshot(path=str(output / f"icon-gallery-{width}.png"),
+                    full_page=True, animations="disabled")
+                gallery.close()
                 page.close()
             browser.close()
     finally:

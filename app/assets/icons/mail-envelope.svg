@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title"><title id="title">Notificações por e-mail</title>
+<rect x="6" y="13" width="52" height="38" rx="6" fill="#FFFFFF" stroke="#17171D" stroke-width="3.5"/>
+<path d="m8 18 24 19 24-19" stroke="#17171D" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="m9 47 16-14m30 14L39 33" stroke="#E50B1A" stroke-width="3" stroke-linecap="round"/>
+</svg>

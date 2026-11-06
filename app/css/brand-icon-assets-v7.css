@@ -1,0 +1,52 @@
+/* Black Friday Hunter — independent custom icon assets, V7.
+   White mode, black/red identity, no font or WhatsApp emoji glyphs. */
+.asset-icon {
+  display:inline-block;
+  flex:0 0 auto;
+  width:21px;
+  height:21px;
+  object-fit:contain;
+  vertical-align:middle;
+  background:transparent;
+}
+.asset-icon.small{width:17px;height:17px}
+.asset-icon.big{width:26px;height:26px}
+.asset-points-head{width:34px;height:34px}
+.asset-points-stat{width:27px;height:27px}
+.points-head{gap:8px}
+.points-head .asset-icon{margin-right:0}
+.stats .stat .asset-points-stat{width:27px;height:27px;max-width:none}
+.reward-coins{
+  background:#FFF7F3;
+  color:inherit;
+  border:1px solid #FFB5B9;
+  border-radius:14px;
+  display:grid;place-items:center;
+  width:55px;height:55px;
+  box-shadow:0 3px 12px #57050E22;
+}
+.reward-coins .asset-rewards-banner{width:42px;height:42px}
+.icon-btn .asset-icon.big{width:26px;height:26px}
+.hero-perks span::before{
+  content:"";
+  display:inline-block;
+  width:17px;height:17px;
+  margin-right:6px;
+  vertical-align:-4px;
+  background:transparent url('/app/assets/icons/verified-badge.svg') center/contain no-repeat;
+  border:0;border-radius:0;
+  box-shadow:none;
+  text-shadow:none;
+}
+.reward-options button .asset-icon{
+  width:18px;height:18px;
+}
+.actions .asset-icon.small{width:17px;height:17px}
+.categories .asset-icon{width:21px;height:21px}
+.section-heading .asset-icon{width:21px;height:21px}
+.stats .stat .asset-icon:not(.asset-points-stat){width:22px;height:22px}
+@media(max-width:700px){
+ .reward-coins{width:46px;height:46px}
+ .reward-coins .asset-rewards-banner{width:33px;height:33px}
+ .reward-options button .asset-icon{width:18px;height:18px}
+}

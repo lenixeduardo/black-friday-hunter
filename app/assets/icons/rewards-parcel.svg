@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title"><title id="title">Benefícios e recompensas Hunter</title>
+<rect x="9" y="27" width="46" height="29" rx="6" fill="#15151A"/>
+<rect x="12" y="30" width="40" height="23" rx="4" fill="#FFF7F2"/>
+<rect x="8" y="22" width="48" height="12" rx="4" fill="#E50B1A" stroke="#15151A" stroke-width="2.4"/>
+<path d="M29 24v30M35 24v30" stroke="#E50B1A" stroke-width="5"/>
+<path d="M32 22c-8-1-15-4-13-10 2-7 12-3 13 10ZM32 22c8-1 15-4 13-10-2-7-12-3-13 10Z" fill="#FFFFFF" stroke="#15151A" stroke-width="2.7" stroke-linejoin="round"/>
+<circle cx="32" cy="23" r="4" fill="#15151A"/>
+</svg>

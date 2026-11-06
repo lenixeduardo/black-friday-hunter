@@ -31,5 +31,8 @@ jobs:
         if: always()
         with:
           name: black-friday-hunter-qa-v5
-          path: artifacts/qa-v5/
+          path: |
+            artifacts/qa-v5/
+            app/assets/icons/*.svg
+            app/assets/icons/preview.html
           retention-days: 14
