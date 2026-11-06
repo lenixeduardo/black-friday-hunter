@@ -7,7 +7,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 16
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -21,3 +21,15 @@ jobs:
         run: node --test tests/test_amazon_catalog.mjs
       - name: Verify structural tests and original visual assets
         run: python -m pytest -q
+      - name: Install Chromium for visual QA
+        run: |
+          python -m pip install 'playwright>=1.55,<1.62'
+          python -m playwright install --with-deps chromium
+      - name: Validate responsive fidelity, product cards and interactions
+        run: python scripts/qa_fidelity_v5.py --out artifacts/qa-v5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: black-friday-hunter-qa-v5
+          path: artifacts/qa-v5/
+          retention-days: 14
