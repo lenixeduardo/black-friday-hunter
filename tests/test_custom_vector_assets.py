@@ -21,6 +21,7 @@ EXPECTED = {
     "tcg-cards.svg",
     "mail-envelope.svg",
     "benefits-spark.svg",
+    "external-link.svg",
 }
 EMOJI = re.compile(r"[\u2600-\u27BF\U0001F300-\U0001FAFF]")
 
@@ -69,8 +70,8 @@ def test_icon_pwa_cache_and_brand_unchanged():
     sw = (ROOT / "app" / "sw.js").read_text(encoding="utf-8")
     for name in EXPECTED:
         assert "/app/assets/icons/" + name in sw
-    assert "bfh-shell-v7" in sw
+    assert "bfh-shell-v8" in sw
     html = HTML.read_text(encoding="utf-8")
-    for required in ("logo-v4.webp","magikarp-scooter.webp","banner-tcg.webp","fidelity-v5.css","brand-icon-assets-v7.css"):
+    for required in ("logo-v4.webp","magikarp-scooter.webp","banner-tcg.webp","fidelity-v5.css","brand-icon-assets-v7.css","affiliate-cta-v8.css"):
         assert required in html
     assert 'id="ofertas" hidden' in html

@@ -1,0 +1,77 @@
+/* Affiliate CTA V8: compact, readable on 2-column mobile catalog.
+   An original SVG indicates an external link. No emoji or Unicode arrows. */
+.amazon-list-link {
+  box-sizing:border-box;
+  width:100%;
+  min-height:48px;
+  margin-top:auto;
+  padding:10px 8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border:1px solid #17171D;
+  border-radius:12px;
+  background:#17171D;
+  color:#FFFFFF;
+  box-shadow:0 4px 10px #17171D12;
+  text-align:center;
+  text-decoration:none;
+  font:800 12px/1.15 Inter,Arial,sans-serif;
+  letter-spacing:-.012em;
+  white-space:nowrap;
+  transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.amazon-list-link:hover {
+  background:#2D2D37;
+  color:#FFFFFF;
+  border-color:#2D2D37;
+  box-shadow:0 6px 15px #17171D20;
+  transform:translateY(-1px);
+}
+.amazon-list-link:focus-visible {
+  outline:3px solid #E50B1A;
+  outline-offset:3px;
+}
+.amazon-list-link:active {transform:translateY(0)}
+.amazon-list-link .affiliate-cta-label {
+  display:inline-block;
+  flex:0 1 auto;
+  min-width:0;
+  white-space:nowrap;
+}
+.amazon-list-link .affiliate-cta-icon {
+  width:18px;
+  height:18px;
+  min-width:18px;
+  flex:0 0 18px;
+  margin:0;
+  object-fit:contain;
+  display:inline-block;
+  filter:none;
+}
+@media(max-width:700px) {
+  .amazon-list-link {
+    min-height:48px;
+    padding:10px 6px;
+    gap:5px;
+    font-size:11.5px;
+    letter-spacing:-.016em;
+  }
+  .amazon-list-link .affiliate-cta-icon {
+    width:16px;
+    height:16px;
+    min-width:16px;
+    flex-basis:16px;
+  }
+}
+@media(max-width:360px) {
+  .amazon-list-link {font-size:11px;gap:3px;padding-inline:3px}
+  .amazon-list-link .affiliate-cta-icon {
+    width:15px;height:15px;min-width:15px;flex-basis:15px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .amazon-list-link{transition:none}
+  .amazon-list-link:hover{transform:none}
+}

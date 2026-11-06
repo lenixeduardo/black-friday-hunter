@@ -64,6 +64,35 @@ def main() -> None:
                 assert page.locator("#amazon-grid .amazon-item .amazon-price.unknown").count() == 0
                 assert page.locator("#amazon-grid .amazon-item .amazon-price").count() == 9
                 assert page.locator("#amazon-grid .amazon-item:visible .amazon-price").count() == 4
+                # CTA audit: independent SVG, one row, real touch area, no Unicode arrow.
+                page.wait_for_function("""() => [...document.querySelectorAll('#amazon-grid .amazon-list-link')]
+                    .every(a => {
+                      const img=a.querySelector('img.affiliate-cta-icon');
+                      return img && img.complete && img.naturalWidth>0;
+                    })""", timeout=15000)
+                affiliate_metrics = page.locator("#amazon-grid .amazon-item:visible .amazon-list-link").evaluate_all("""links => links.map(link => {
+                  const text=link.querySelector('.affiliate-cta-label');
+                  const icon=link.querySelector('.affiliate-cta-icon');
+                  const box=link.getBoundingClientRect();
+                  const t=text.getBoundingClientRect(), i=icon.getBoundingClientRect();
+                  return {
+                    label:text.textContent.trim(), href:link.href, height:box.height,
+                    textOverflow:text.scrollWidth>text.clientWidth+1,
+                    linkOverflow:link.scrollWidth>link.clientWidth+1,
+                    centerDifference:Math.abs((t.top+t.height/2)-(i.top+i.height/2)),
+                    background:getComputedStyle(link).backgroundColor,
+                    iconLoaded:icon.complete&&icon.naturalWidth>0
+                  };
+                })""")
+                assert len(affiliate_metrics)==4, affiliate_metrics
+                for item in affiliate_metrics:
+                    assert item["label"]=="Ver lista Amazon", item
+                    assert item["href"]=="https://amzn.to/4846Sow", item
+                    assert item["height"]>=47.5, item
+                    assert not item["textOverflow"] and not item["linkOverflow"], item
+                    assert item["centerDifference"]<=2, item
+                    assert item["iconLoaded"], item
+                    assert item["background"]=="rgb(23, 23, 29)", item
 
                 # Requirement: no unpriced TCG card or sealed product is rendered.
                 assert page.locator("#ofertas").is_hidden()
@@ -96,6 +125,8 @@ def main() -> None:
 
                 page.screenshot(path=str(output / f"home-{width}.png"),
                     full_page=True, animations="disabled")
+                page.locator("#amazon-grid").screenshot(
+                    path=str(output / f"affiliate-cta-{width}.png"), animations="disabled")
 
                 # Validate fail-closed behavior across negative and positive cases.
                 # This is synthetic test data, not a production offer.
@@ -170,7 +201,7 @@ def main() -> None:
                 assert page.locator("#ofertas").is_hidden()
                 assert not errors, errors
 
-                reports.append({"width": width, "customSVGIconsLoaded": True, "emojiFree": True, "result": "PASS",
+                reports.append({"width": width, "affiliateCTA": affiliate_metrics, "customSVGIconsLoaded": True, "emojiFree": True, "result": "PASS",
                     "unpricedTCGCardsVisible": 0,
                     "syntheticValidPriceShowsOneCard": True,
                     "invalidOrUnverifiedPriceHidden": True,
@@ -186,7 +217,7 @@ def main() -> None:
                     f"http://127.0.0.1:{server.server_port}/app/assets/icons/preview.html",
                     wait_until="domcontentloaded", timeout=20000)
                 assert gallery_response and gallery_response.status == 200
-                assert gallery.locator(".gallery img").count() == 10
+                assert gallery.locator(".gallery img").count() == 11
                 gallery.evaluate("""() => [...document.querySelectorAll('.gallery img')]
                     .forEach(img => { img.loading = 'eager'; })""")
                 gallery.wait_for_function("""() => [...document.querySelectorAll('.gallery img')]
