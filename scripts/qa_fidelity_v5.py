@@ -60,6 +60,11 @@ def main() -> None:
                     .forEach(img => { img.loading = 'eager'; })""")
                 page.wait_for_function("""() => [...document.querySelectorAll('#tcg-boxes img, #singles img')]
                     .every(img => img.complete && img.naturalWidth > 0)""", timeout=15000)
+                # Wait for async PNG/WebP decoding, not just the network load.
+                page.evaluate("""async () => {
+                    await Promise.all([...document.querySelectorAll('#tcg-boxes img, #singles img')]
+                        .map(img => img.decode()));
+                }""")
                 images_loaded = True
                 overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
                 assert overflow <= 2, f"Horizontal page overflow: {overflow} at {width}"
@@ -93,6 +98,9 @@ def main() -> None:
                 else:
                     assert page.locator("#mobile-tcg-art").is_hidden()
 
+                # Avoid transient keyboard focus rings in full-page visual evidence.
+                page.evaluate("""() => { document.activeElement?.blur(); window.scrollTo(0,0); }""")
+                page.wait_for_timeout(250)
                 page.screenshot(path=str(output / f"home-{width}.png"), full_page=True,
                     animations="disabled", timeout=45000)
                 page.locator("#singles").scroll_into_view_if_needed()
