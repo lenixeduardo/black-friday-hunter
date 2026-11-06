@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="icon" href="/app/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" sizes="180x180" href="/app/apple-touch-icon.png">
+<title>Black Friday Hunter · Sem conexão</title>
+<style>
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,Arial,sans-serif;color:#17171d;background:#fff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:26px}
+main{width:min(540px,100%);text-align:center}
+.logo{width:min(255px,75vw);height:auto;margin:0 auto 34px}
+.symbol{width:68px;height:68px;display:grid;place-items:center;margin:0 auto 20px;border-radius:20px;background:#fff1f2;border:1px solid #ffc4c9}
+.symbol svg{width:37px;height:37px;fill:none;stroke:#d70c1f;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+h1{font-size:clamp(25px,6vw,36px);line-height:1.14;letter-spacing:-.05em;margin:0 0 12px}
+p{color:#585963;line-height:1.65;font-size:15px;margin:0 auto 23px;max-width:430px}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+a,button{min-height:48px;padding:12px 18px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #d90c1e;background:#de0c1d;color:#fff;font-weight:800;font-size:14px;cursor:pointer}
+a{border-color:#e1e1e5;background:white;color:#18181e}
+small{display:block;color:#6c6b72;margin-top:23px;line-height:1.5}
+</style></head><body><main>
+<img class="logo" src="/app/assets/logo-v4.webp" width="255" height="85" alt="Black Friday Hunter">
+<div class="symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0M9 15a5 5 0 0 1 6 0M12 19h.01M4 4l16 16"/></svg></div>
+<h1>Você está sem conexão</h1>
+<p>O Black Friday Hunter precisa de internet para atualizar ofertas. O conteúdo salvo pode aparecer offline, mas os preços devem ser conferidos na loja antes da compra.</p>
+<div class="actions"><button onclick="location.reload()">Tentar novamente</button><a href="/app/">Voltar ao aplicativo</a></div>
+<small>Alertas e valores em tempo real não estão disponíveis offline.</small>
+</main></body></html>
