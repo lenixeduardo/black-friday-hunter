@@ -1,0 +1,90 @@
+{
+  "source": "arte fornecida pelo usuário",
+  "affiliate_destination": "https://amzn.to/4846Sow",
+  "merchant": "Amazon Brasil",
+  "status": "manual_unverified",
+  "pricing": "not_verified",
+  "note": "A imagem é um criativo, não confirma estoque ou preço; todos os CTAs abrem a lista, não itens individualmente.",
+  "items": [
+    {
+      "slug": "colecao-parceiro-inicial",
+      "name": "Coleção Ilustração — Parceiro Inicial",
+      "category": "Coleção especial",
+      "image": "/app/assets/amazon/colecao-parceiro-inicial.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "reinado-delta-bundle",
+      "name": "Mega Evolution Reinado Delta — Booster Bundle",
+      "category": "Booster bundle",
+      "image": "/app/assets/amazon/reinado-delta-bundle.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "celebracao-poster",
+      "name": "Celebração de 30 anos — Box com pôster",
+      "category": "Box colecionável",
+      "image": "/app/assets/amazon/celebracao-poster.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "reinado-delta-atb",
+      "name": "Mega Evolution Reinado Delta — Advanced Trainer Box",
+      "category": "Caixa especial",
+      "image": "/app/assets/amazon/reinado-delta-atb.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "reinado-delta-sleeved",
+      "name": "Mega Evolution Reinado Delta — Sleeved Booster",
+      "category": "Booster avulso",
+      "image": "/app/assets/amazon/reinado-delta-sleeved.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "celebracao-bundle",
+      "name": "30th Celebration — Booster Bundle PT-BR",
+      "category": "Booster bundle",
+      "image": "/app/assets/amazon/celebracao-bundle.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "reinado-delta-box",
+      "name": "Mega Evolution Reinado Delta — Booster Box",
+      "category": "Booster box",
+      "image": "/app/assets/amazon/reinado-delta-box.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "caos-ascendente-box",
+      "name": "Mega Evolução Caos Ascendente — Booster Box",
+      "category": "Booster box",
+      "image": "/app/assets/amazon/caos-ascendente-box.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "escuridao-sleeved",
+      "name": "Mega Evolução Escuridão Absoluta — Sleeved Booster",
+      "category": "Booster avulso",
+      "image": "/app/assets/amazon/escuridao-sleeved.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    },
+    {
+      "slug": "celebracao-blister",
+      "name": "Celebração de 30 anos — Blister Duplo",
+      "category": "Blister colecionável",
+      "image": "/app/assets/amazon/celebracao-blister.webp",
+      "price_verified": false,
+      "url": "https://amzn.to/4846Sow"
+    }
+  ]
+}

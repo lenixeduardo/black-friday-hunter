@@ -1,10 +1,11 @@
 /* Black Friday Hunter — only cache the static, public shell. */
-const CACHE = 'bfh-shell-v2';
+const CACHE = 'bfh-shell-v3';
 const PRECACHE = [
   '/app/', '/app/index.html', '/app/manifest.webmanifest',
   '/app/icon-192.png', '/app/icon-512.png',
   '/app/assets/logo-v4.webp', '/app/assets/magikarp-scooter.webp',
-  '/app/assets/banner-tcg.webp'
+  '/app/assets/banner-tcg.webp',
+  '/app/assets/amazon/catalogo-enviado.webp'
 ];
 function cacheable(url) {
   return PRECACHE.includes(url.pathname) || url.pathname.startsWith('/app/assets/');

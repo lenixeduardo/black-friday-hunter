@@ -41,3 +41,8 @@ Consulte `AGENTS.md`, `DESIGN.md` e `.agents/skills/black-friday-hunter/SKILL.md
 3. Implementar integrações de afiliados da Shopee/Mercado Livre.
 4. Configurar alertas via WhatsApp Business Cloud API com consentimento explícito.
 5. Auditar a produção em navegador com capturas comparadas ao mockup e corrigir o que falta para 9,5/10.
+
+
+### Seleção Amazon TCG (curadoria manual)
+
+A home inclui os 10 produtos identificados visualmente no criativo enviado por @eduardotrainerTCG, com recortes da própria arte (não são fotografias verificadas do catálogo). Todos os botões abrem o **mesmo link fornecido pelo responsável** (`https://amzn.to/4846Sow`), sem atribuição individual de ASIN nem preços falsos. A API/vitrine Amazon não pôde ser consultada; disponibilidade, produto exato e valor final dependem de confirmação no site ou app oficial. A seção apresenta transparência sobre afiliação. Os cards não atribuem pontos nem notificações.
