@@ -1,8 +1,8 @@
 /* Black Friday Hunter — only cache the static, public shell. */
-const CACHE = 'bfh-shell-v7';
+const CACHE = 'bfh-shell-v8';
 const PRECACHE = [
   '/app/', '/app/index.html', '/app/manifest.webmanifest',
-  '/app/css/fidelity-v5.css', '/app/css/brand-icon-assets-v7.css', '/app/js/amazon-catalog-ui.mjs',
+  '/app/css/fidelity-v5.css', '/app/css/brand-icon-assets-v7.css', '/app/css/affiliate-cta-v8.css', '/app/js/amazon-catalog-ui.mjs',
   '/app/icon-192.png', '/app/icon-512.png',
   '/app/assets/logo-v4.webp', '/app/assets/magikarp-scooter.webp',
   '/app/assets/banner-tcg.webp',
@@ -16,6 +16,7 @@ const PRECACHE = [
   '/app/assets/icons/tcg-cards.svg',
   '/app/assets/icons/mail-envelope.svg',
   '/app/assets/icons/benefits-spark.svg',
+  '/app/assets/icons/external-link.svg',
   '/app/assets/amazon/catalogo-enviado.webp',
   '/app/assets/tcg/01-vintage-squirtle-base1-63.png',
   '/app/assets/tcg/02-illustration-rare-pikachu-173.png',
