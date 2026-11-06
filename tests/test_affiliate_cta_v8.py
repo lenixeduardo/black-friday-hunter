@@ -38,6 +38,6 @@ def test_affiliate_button_contrast_and_cache():
     assert "white-space:nowrap" in css
     assert "background:#17171D" in css and "color:#FFFFFF" in css
     sw=(ROOT/"app/sw.js").read_text(encoding="utf-8")
-    assert "bfh-shell-v9" in sw
+    assert "bfh-shell-v10" in sw
     assert "/app/css/affiliate-cta-v8.css" in sw
     assert "/app/assets/icons/external-link.svg" in sw
