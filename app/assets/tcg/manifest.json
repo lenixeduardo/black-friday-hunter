@@ -1,0 +1,65 @@
+{
+  "assets": [
+    {
+      "category": "Vintage",
+      "pokemon": "Squirtle",
+      "set": "Base Set",
+      "number": "63/102",
+      "file": "/app/assets/tcg/01-vintage-squirtle-base1-63.png",
+      "source_url": "https://images.pokemontcg.io/base1/63_hires.png",
+      "source_sha256": "5a0186f92a62abbf1a93f322b65b2f96035f5cc3d305579b22eda012587e0d4f",
+      "original_px": [
+        600,
+        825
+      ],
+      "export_px": [
+        1056,
+        1472
+      ],
+      "source_credit": "images.pokemontcg.io",
+      "commercial_reuse_authorized": false,
+      "purpose": "Category artwork reference only; NOT a product offer"
+    },
+    {
+      "category": "Illustration Rare",
+      "pokemon": "Pikachu",
+      "set": "Pokemon 151",
+      "number": "173/165",
+      "file": "/app/assets/tcg/02-illustration-rare-pikachu-173.png",
+      "source_url": "https://images.pokemontcg.io/sv3pt5/173_hires.png",
+      "source_sha256": "306741862251c12cea23c7f84462e29d11ed3c68aa57f52ccd5740cd40733a2c",
+      "original_px": [
+        733,
+        1024
+      ],
+      "export_px": [
+        1056,
+        1472
+      ],
+      "source_credit": "images.pokemontcg.io",
+      "commercial_reuse_authorized": false,
+      "purpose": "Category artwork reference only; NOT a product offer"
+    },
+    {
+      "category": "Double Rare",
+      "pokemon": "Charizard ex",
+      "set": "Pokemon 151",
+      "number": "006/165",
+      "file": "/app/assets/tcg/03-double-rare-charizard-ex-006.png",
+      "source_url": "https://images.pokemontcg.io/sv3pt5/6_hires.png",
+      "source_sha256": "c814b54d77f235c829b7afb60aee15b12d35c0e61a8079f8d37329fd0721764c",
+      "original_px": [
+        733,
+        1024
+      ],
+      "export_px": [
+        1056,
+        1472
+      ],
+      "source_credit": "images.pokemontcg.io",
+      "commercial_reuse_authorized": false,
+      "purpose": "Category artwork reference only; NOT a product offer"
+    }
+  ],
+  "commercial_reuse_authorized": false
+}

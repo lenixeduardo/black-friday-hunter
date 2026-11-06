@@ -1,11 +1,14 @@
 /* Black Friday Hunter — only cache the static, public shell. */
-const CACHE = 'bfh-shell-v3';
+const CACHE = 'bfh-shell-v4';
 const PRECACHE = [
   '/app/', '/app/index.html', '/app/manifest.webmanifest',
   '/app/icon-192.png', '/app/icon-512.png',
   '/app/assets/logo-v4.webp', '/app/assets/magikarp-scooter.webp',
   '/app/assets/banner-tcg.webp',
-  '/app/assets/amazon/catalogo-enviado.webp'
+  '/app/assets/amazon/catalogo-enviado.webp',
+  '/app/assets/tcg/01-vintage-squirtle-base1-63.png',
+  '/app/assets/tcg/02-illustration-rare-pikachu-173.png',
+  '/app/assets/tcg/03-double-rare-charizard-ex-006.png'
 ];
 function cacheable(url) {
   return PRECACHE.includes(url.pathname) || url.pathname.startsWith('/app/assets/');
