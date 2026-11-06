@@ -48,13 +48,16 @@ def main() -> None:
                     wait_until="domcontentloaded", timeout=25000)
                 assert response and response.status == 200
                 page.wait_for_function(
-                    "document.querySelector('#amazon-result-count')?.textContent.includes('4 de 10')",
+                    "document.querySelector('#amazon-result-count')?.textContent.includes('4 de 9')",
                     timeout=20000)
                 assert not errors, errors
-                assert page.locator("#amazon-grid .amazon-item").count() == 10
+                assert page.locator("#amazon-grid .amazon-item").count() == 9
                 assert page.locator("#amazon-grid .amazon-item:visible").count() == 4
                 assert page.locator("#amazon-show-all").get_attribute("aria-expanded") == "false"
                 assert page.locator("#amazon-curadoria").get_attribute("data-verified") == "false"
+                assert page.locator("#amazon-grid .amazon-item .amazon-price.unknown").count() == 0
+                assert page.locator("#amazon-grid .amazon-item .amazon-price").count() == 9
+                assert page.locator("#amazon-grid .amazon-item:visible .amazon-price").count() == 4
 
                 # Requirement: no unpriced TCG card or sealed product is rendered.
                 assert page.locator("#ofertas").is_hidden()
@@ -143,7 +146,7 @@ def main() -> None:
 
                 # The existing Amazon list remains searchable and honest.
                 page.locator("#amazon-show-all").click()
-                assert page.locator("#amazon-grid .amazon-item:visible").count() == 10
+                assert page.locator("#amazon-grid .amazon-item:visible").count() == 9
                 assert page.locator("#amazon-show-all").get_attribute("aria-expanded") == "true"
                 page.locator("#amazon-show-all").click()
                 assert page.locator("#amazon-grid .amazon-item:visible").count() == 4
@@ -166,7 +169,7 @@ def main() -> None:
                     "syntheticValidPriceShowsOneCard": True,
                     "invalidOrUnverifiedPriceHidden": True,
                     "amazonCatalogInitially": 4,
-                    "amazonCatalogExpanded": 10,
+                    "amazonCatalogExpanded": 9,
                     "searchPassed": True,
                     "overflowPx": overflow,
                     "textAndTouchMetrics": sizes})
