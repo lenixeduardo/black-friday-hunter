@@ -122,7 +122,8 @@ def main() -> None:
                 hero=page.locator(".hero.hero-v9")
                 assert hero.is_visible()
                 assert page.locator(".hero .hero-eyebrow").inner_text() == "BLACK FRIDAY HUNTER"
-                assert page.locator(".hero h1").inner_text().replace("\\n"," ").strip() == "Encontre antes. Economize mais."
+                assert "Encontre antes." in page.locator(".hero h1").inner_text()
+                assert page.locator(".hero h1 strong").inner_text().strip() == "Economize mais."
                 assert page.locator(".hero .actions > *").count() == 2
                 assert page.locator("#tcg-hero").count() == 0
                 assert page.locator("#mobile-tcg-art").count() == 0
