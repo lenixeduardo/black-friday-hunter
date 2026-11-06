@@ -9,7 +9,7 @@ MANIFEST=json.loads((ROOT/'app/manifest.webmanifest').read_text(encoding='utf-8'
 
 class StaticTests(unittest.TestCase):
     def test_visual_identity(self):
-        for text in ('Black Friday Hunter','logo-v4.webp','magikarp-scooter.webp','banner-tcg.webp','Economize mais.'):
+        for text in ('Black Friday Hunter','logo-v4.webp','magikarp-scooter.webp','hero-v9','Economize mais.'):
             self.assertIn(text,APP)
     def test_menu(self):
         for text in ('id="menu-toggle"','id="drawer"','aria-expanded','setMenu('):

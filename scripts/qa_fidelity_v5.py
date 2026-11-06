@@ -118,11 +118,50 @@ def main() -> None:
                 assert sizes["amazonTitle"] >= 12, sizes
                 assert sizes["buyLinkHeight"] >= 43.5, sizes
                 assert sizes["expandButtonHeight"] >= 43.5, sizes
+                # Approved hero variant 02: one red card, original Magikarp, two CTAs.
+                hero=page.locator(".hero.hero-v9")
+                assert hero.is_visible()
+                assert page.locator(".hero .hero-eyebrow").inner_text() == "BLACK FRIDAY HUNTER"
+                assert "Encontre antes." in page.locator(".hero h1").inner_text()
+                assert page.locator(".hero h1 strong").inner_text().strip() == "Economize mais."
+                assert page.locator(".hero .actions > *").count() == 2
+                assert page.locator("#tcg-hero").count() == 0
+                assert page.locator("#mobile-tcg-art").count() == 0
+                assert page.locator("#amazon-hero-link").get_attribute("href") == "https://amzn.to/4846Sow"
+                assert page.locator(".hero-note").is_visible()
+                assert "não disponíveis" in page.locator(".hero-note").inner_text()
+                page.wait_for_function("""() => {
+                    const img=document.querySelector('.hero-magikarp img');
+                    return img.complete && img.naturalWidth>0;
+                }""", timeout=15000)
+                hero_metrics=page.evaluate("""() => {
+                    const card=document.querySelector('.hero.hero-v9'),
+                          copy=card.querySelector('.hero-copy'),
+                          picture=card.querySelector('.hero-magikarp'),
+                          image=picture.querySelector('img'),
+                          buttons=[...card.querySelectorAll('.hero-actions > *')];
+                    const r=el=>{const box=el.getBoundingClientRect();
+                      return {x:box.x,y:box.y,w:box.width,h:box.height,
+                              right:box.right,bottom:box.bottom};};
+                    return {card:r(card),copy:r(copy),picture:r(picture),image:r(image),
+                            buttons:buttons.map(r),
+                            background:getComputedStyle(card).backgroundImage,
+                            borderRadius:getComputedStyle(card).borderRadius,
+                            mascotSrc:image.getAttribute('src')};
+                }""")
+                assert hero_metrics["mascotSrc"] == "/app/assets/magikarp-scooter.webp"
+                assert "linear-gradient" in hero_metrics["background"], hero_metrics
+                assert hero_metrics["card"]["w"] > 300
+                assert hero_metrics["copy"]["x"] >= hero_metrics["card"]["x"]
+                assert all(item["h"] >= 47.5 for item in hero_metrics["buttons"])
+                assert hero_metrics["image"]["w"] >= 130
                 if width == 390:
-                    assert page.locator("#mobile-tcg-art").is_visible()
+                    assert hero_metrics["picture"]["y"] >= hero_metrics["copy"]["y"] + 140
                 else:
-                    assert page.locator("#mobile-tcg-art").is_hidden()
-
+                    assert hero_metrics["picture"]["x"] >= hero_metrics["copy"]["x"] + 150
+                assert hero_metrics["card"]["right"] <= width+1
+                hero.screenshot(path=str(output / f"hero-approved-v2-{width}.png"),
+                    animations="disabled")
                 page.screenshot(path=str(output / f"home-{width}.png"),
                     full_page=True, animations="disabled")
                 page.locator("#amazon-grid").screenshot(
@@ -209,7 +248,7 @@ def main() -> None:
                     "amazonCatalogExpanded": 9,
                     "searchPassed": True,
                     "overflowPx": overflow,
-                    "textAndTouchMetrics": sizes})
+                    "textAndTouchMetrics": sizes,"approvedHeroVariant":"02","heroMetrics":hero_metrics})
                 print(f"QA home pricing and SVG icon assets {width}: PASS", flush=True)
                 gallery = browser.new_page(viewport={"width": width, "height": 900},
                     reduced_motion="reduce", service_workers="block")

@@ -36,6 +36,20 @@ Construir um aplicativo web responsivo e instalável como PWA para encontrar pro
 14. **Não inventar depoimentos, parceiros ou benefícios ativos**; oferecer configuração real no painel.
 15. **Responsivo obrigatório:** validar 390 px, 768 px e 1440 px, além de estados intermediários.
 
+## Hero aprovada — variante 02 (06/11/2026)
+
+A variante **02** foi aprovada explicitamente pelo usuário, substituindo a hero anterior de três colunas. Referência de composição, não imagem achatada no frontend.
+
+- Cabeçalho de navegação **externo ao card**, white mode, logo V4 original e menu no canto superior esquerdo.
+- Hero como **um card vermelho de cantos arredondados**; gradiente tonal discreto e bastante espaço negativo.
+- **Duas colunas desktop:** conteúdo textual conciso à esquerda; **mesmo asset original** `/app/assets/magikarp-scooter.webp` à direita, sem redesenho.
+- Título “Encontre antes. Economize mais.”, segunda frase em capsule branca com texto vermelho.
+- Somente CTA principal **Explorar Amazon TCG**, com link de afiliado fornecido, e CTA secundário **Alertas de ofertas** com modal transparente de integração pendente; não prometer alertas ativos.
+- Não repetir banner/editorial TCG dentro da hero nem inventar números, preços ou resultados. Preservar o banner original como asset histórico, sem renderizá-lo ali.
+- Mobile: texto primeiro, ações acessíveis com 48 px, mascote abaixo sem cortar, nenhum overflow; animação curva uma vez e `prefers-reduced-motion`.
+- **Sem emojis de WhatsApp, coroas ou símbolos genéricos** como assets. Não trocar o logo V4 nem alterar personagem e suas cores.
+- Não modificar módulos fora da hero, exceto testes, PWA e documentação necessários.
+
 ## 3. Design system
 
 ### 3.1 Cores
