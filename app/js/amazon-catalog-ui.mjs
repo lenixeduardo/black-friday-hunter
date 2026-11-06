@@ -103,7 +103,10 @@ if (grid) {
   }
 
   function render(products) {
-    items = products;
+    // The home is a priced showcase. Source records without a positive
+    // visible amount remain in the catalog data, not in the initial UI.
+    items = products.filter(product => Number.isFinite(product?.price?.amount) &&
+      product.price.amount > 0 && Boolean(formatBRL(product.price)));
     grid.replaceChildren(...items.map(makeCard));
     updateVisibility();
   }

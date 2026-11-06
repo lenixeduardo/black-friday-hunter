@@ -1,5 +1,5 @@
 /* Black Friday Hunter — only cache the static, public shell. */
-const CACHE = 'bfh-shell-v5';
+const CACHE = 'bfh-shell-v6';
 const PRECACHE = [
   '/app/', '/app/index.html', '/app/manifest.webmanifest',
   '/app/css/fidelity-v5.css', '/app/js/amazon-catalog-ui.mjs',
