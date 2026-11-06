@@ -46,3 +46,17 @@ Consulte `AGENTS.md`, `DESIGN.md` e `.agents/skills/black-friday-hunter/SKILL.md
 ### Seleção Amazon TCG (curadoria manual)
 
 A home inclui os 10 produtos identificados visualmente no criativo enviado por @eduardotrainerTCG, com recortes da própria arte (não são fotografias verificadas do catálogo). Todos os botões abrem o **mesmo link fornecido pelo responsável** (`https://amzn.to/4846Sow`), sem atribuição individual de ASIN nem preços falsos. A API/vitrine Amazon não pôde ser consultada; disponibilidade, produto exato e valor final dependem de confirmação no site ou app oficial. A seção apresenta transparência sobre afiliação. Os cards não atribuem pontos nem notificações.
+
+## Catálogo Amazon: extração e renderização
+
+Os cartões da seleção do @eduardotrainerTCG são construídos a partir de objetos JavaScript (`app/js/amazon-catalog.mjs`). O frontend (`app/js/amazon-catalog-ui.mjs`) usa `map()` para renderizar nome, imagem, preço e destino de cada produto.
+
+**Modo de referência:** `app/assets/amazon/curadoria.json` contém 10 produtos transcritos da arte fornecida, sendo 9 com valores de referência. Eles são rotulados **'Valor da arte enviada · não atualizado'** e direcionam à lista `https://amzn.to/4846Sow`, pois o link individual de cada item não pôde ser extraído da página pública.
+
+**Modo oficial:** A função Vercel `GET /api/amazon-products` usa Amazon Creators API `GetItems` e retorna `{status,updatedAt,items:[{id,asin,name,image,price,productUrl,category,status}]}`. Configure em Vercel (Environment Variables) `AMAZON_CREATORS_CLIENT_ID`, `AMAZON_CREATORS_CLIENT_SECRET`, `AMAZON_ASSOCIATE_TAG` e `AMAZON_LIST_ASINS` (códigos ASIN reais dos itens da sua lista separados por vírgula). Credenciais ficam exclusivamente no backend. Depois de configurar, faça novo deploy para ativá-las.
+
+Quando disponível, a API preenche preços, imagens e links individuais de produto atribuídos ao afiliado, atualizados periodicamente; caso contrário, mantém a seleção de referência identificada como não verificada. Não faça scraping automatizado do storefront da Amazon.
+
+Documentação oficial: https://associados.amazon.com.br/creatorsapi/docs/en-us/get-started/using-curl
+
+Para testar localmente: `node --test tests/test_amazon_catalog.mjs`.
