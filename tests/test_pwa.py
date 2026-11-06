@@ -29,7 +29,7 @@ def test_home_is_interactive_and_does_not_fabricate_offers():
     html=(R/'app/index.html').read_text(encoding='utf-8')
     for control in ('menu-toggle','drawer','interest','tcg-hero','search-form','recompensas'):
         assert f'id="{control}"' in html
-    for phrase in ('Mini BB / boosters','Cartas avulsas','Sem preço validado','pontos disponíveis','Aguardando API','localStorage.setItem'):
+    for phrase in ('Mini BB / boosters','Cartas avulsas','Sem preço validado','pontos disponíveis','Sem oferta validada','localStorage.setItem'):
         assert phrase in html
     assert '12.460' not in html
     assert '2.780' not in html
