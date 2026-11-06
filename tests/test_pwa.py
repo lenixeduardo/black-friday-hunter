@@ -19,7 +19,7 @@ def test_pwa_manifest_is_installable():
 
 def test_home_uses_approved_original_assets():
     html=(R/'app/index.html').read_text(encoding='utf-8')
-    for asset in ('logo-v4.webp','magikarp-scooter.webp','banner-tcg.webp'):
+    for asset in ('logo-v4.webp','magikarp-scooter.webp'):
         assert f'/app/assets/{asset}' in html
         with Image.open(R/'app/assets'/asset) as img:
             assert img.width>300
@@ -27,7 +27,7 @@ def test_home_uses_approved_original_assets():
 
 def test_home_is_interactive_and_does_not_fabricate_offers():
     html=(R/'app/index.html').read_text(encoding='utf-8')
-    for control in ('menu-toggle','drawer','interest','tcg-hero','search-form','recompensas'):
+    for control in ('menu-toggle','drawer','interest','amazon-hero-link','search-form','recompensas'):
         assert f'id="{control}"' in html
     for phrase in ('Mini BB / boosters','Cartas avulsas','Sem preço validado','pontos disponíveis','Sem oferta validada','localStorage.setItem'):
         assert phrase in html
@@ -35,6 +35,16 @@ def test_home_is_interactive_and_does_not_fabricate_offers():
     assert '2.780' not in html
     assert 'Faltam para a Black Friday' not in html
     assert '@media(prefers-reduced-motion:reduce)' in html
+
+def test_banner_asset_is_preserved_but_not_repeated_in_minimal_hero():
+    from PIL import Image
+    original=R/'app/assets/banner-tcg.webp'
+    assert original.is_file()
+    with Image.open(original) as image:
+        assert image.width>300
+    html=(R/'app/index.html').read_text(encoding='utf-8')
+    assert 'class="tcg-hero"' not in html
+    assert 'id="mobile-tcg-art"' not in html
 
 def test_service_worker_caches_only_safe_static_assets():
     script=(R/'app/sw.js').read_text(encoding='utf-8')
