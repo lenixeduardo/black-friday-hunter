@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title"><title id="title">Destaque Hunter</title>
+<path d="M32 5c1 14 8 22 23 27-15 5-22 13-23 27C29 45 22 37 9 32c13-5 20-13 23-27Z" fill="#FFF6F6" stroke="#17171D" stroke-width="3" stroke-linejoin="round"/>
+<path d="M32 19v26M19 32h26" stroke="#E50B1A" stroke-width="3" stroke-linecap="round"/>
+<path d="m7 11 4 4m43 38 4 4" stroke="#E50B1A" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
