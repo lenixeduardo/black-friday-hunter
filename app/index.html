@@ -134,10 +134,11 @@ try{setInterest(localStorage.getItem('bfh-interest')||'TCG')}catch{setInterest('
 function isPricedOffer(card){
  const amount=Number(card.dataset.priceAmount);
  const label=card.querySelector('.offer-price');
- return card.dataset.priceVerified==='true' &&
-        card.dataset.priceAmount!==undefined && card.dataset.priceAmount.trim()!=='' &&
-        Number.isFinite(amount) && amount>0 &&
-        Boolean(label && /^R\\$\\s*\\d/.test(label.textContent.trim()));
+ if(card.dataset.priceVerified!=='true' || !card.dataset.priceAmount?.trim() ||
+    !Number.isFinite(amount) || amount<=0 || !label)return false;
+ const expected=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(amount);
+ const compact=value=>value.replace(/\s/g,' ').trim();
+ return compact(label.textContent)===compact(expected);
 }
 function refreshVerifiedOfferCards(){
  const tcgActive=interest.value==='TCG';
