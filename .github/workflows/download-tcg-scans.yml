@@ -1,0 +1,80 @@
+name: Download TCG reference scans (non-production)
+on:
+  push:
+    branches: [asset-download-tcg-refs]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install image processor
+        run: python -m pip install --disable-pip-version-check "Pillow>=11,<13"
+      - name: Download and prepare authentic scans
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tcg-reference-assets/original tcg-reference-assets/transparent
+          python - <<'PY'
+          import hashlib,json,os,time,urllib.request
+          from pathlib import Path
+          from PIL import Image,ImageOps,ImageDraw
+          base=Path("tcg-reference-assets")
+          items=[
+            ("01-vintage-squirtle-base1-63","Vintage","Squirtle 63/102","https://images.pokemontcg.io/base1/63_hires.png"),
+            ("02-illustration-rare-pikachu-173","Illustration Rare","Pikachu 173/165","https://images.pokemontcg.io/sv3pt5/173_hires.png"),
+            ("03-double-rare-charizard-ex-006","Double Rare","Charizard ex 006/165","https://images.pokemontcg.io/sv3pt5/6_hires.png"),
+          ]
+          entries=[]
+          W,H=1056,1472
+          sheet=Image.new("RGB",(3*420,650),(244,245,247))
+          draw=ImageDraw.Draw(sheet)
+          for idx,(stem,category,name,url) in enumerate(items):
+            dest=base/"original"/f"{stem}.png"
+            req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; AssetPrep/1.0)"})
+            exc=None
+            for attempt in range(3):
+              try:
+                with urllib.request.urlopen(req,timeout=25) as response:
+                  content=response.read(8_000_001)
+                  assert len(content)<8_000_001, "image too large"
+                  assert content[:8]==b"\x89PNG\r\n\x1a\n","non PNG response"
+                dest.write_bytes(content)
+                exc=None;break
+              except Exception as e:
+                exc=e
+                time.sleep(attempt+1)
+            if exc: raise RuntimeError(f"Download failed {name} {url}: {exc}")
+            with Image.open(dest) as raw: im=raw.convert("RGBA")
+            source_size=im.size
+            im.thumbnail((924,1290),Image.Resampling.LANCZOS)
+            out=Image.new("RGBA",(W,H),(0,0,0,0))
+            out.alpha_composite(im,((W-im.width)//2,(H-im.height)//2))
+            path=base/"transparent"/f"{stem}.png"
+            out.save(path,optimize=True)
+            assert out.getpixel((0,0))[3]==0
+            assert out.getpixel((W-1,H-1))[3]==0
+            assert out.getbbox() is not None
+            thumb=out.copy();thumb.thumbnail((374,530),Image.Resampling.LANCZOS)
+            background=Image.new("RGBA",thumb.size,(244,245,247,255));background.alpha_composite(thumb)
+            px=idx*420+(420-thumb.width)//2
+            sheet.paste(background.convert("RGB"),(px,55))
+            draw.text((idx*420+24,15),f"{category}: {name}",fill=(20,20,20))
+            entries.append({"file":str(path),"original":str(dest),"category":category,"card":name,
+              "source_url":url,"original_size":list(source_size),"output_size":[W,H],
+              "sha256_source":hashlib.sha256(content).hexdigest(),
+              "rights":"Downloaded for evaluation only. Commercial reuse is not verified."})
+          sheet.save(base/"preview.jpg",quality=90)
+          (base/"manifest.json").write_text(json.dumps({"assets":entries,"commercial_use_approved":False},indent=2),encoding="utf-8")
+          print(json.dumps({"downloaded":len(entries),"names":[e["card"] for e in entries]},ensure_ascii=False))
+          PY
+      - name: Upload reference files as private workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bfh-tcg-scans-source-and-transparent
+          path: tcg-reference-assets/
+          retention-days: 7
