@@ -1,42 +1,43 @@
 # Black Friday Hunter
 
-Repositório do **Black Friday Hunter**, aplicativo de monitoramento de ofertas com prioridade para Shopee e Mercado Livre, personalização TCG e planejamento de alertas e recompensas.
+PWA white mode para descoberta de promoções por interesse, com prioridade futura em Shopee e Mercado Livre e destaque TCG.
 
-## Status de implantação
+## Status atual — Design V2 publicado
 
-**Protótipo publicamente versionado, não MVP de produção.** O projeto remoto possui uma interface PWA white mode inicial em `app/index.html`, manifesto, service worker, skill para Codex, design e testes estruturais. Esta publicação não inclui ainda os 9 PNGs originais, o protótipo local completo e todos os scripts detalhados de QA disponíveis no pacote entregue na conversa.
+**A home está publicada na Vercel**, com logotipo V4, Magikarp na scooter e banner TCG aprovados (3 assets gráficos originais convertidos para WebP transparente, sem recriação de imagem). Menu hambúrguer, categoria persistente, busca, cards e área de recompensas são componentes HTML/CSS/JS responsivos. As demais imagens de UI foram mantidas como referência para não fixar informações como saldos e preços ilustrativos.
 
-O espaço da hero usa atualmente uma ilustração SVG simplificada como substituto visual; a animação e a arte original do Magikarp devem ser integradas a partir de `assets/home/04-magikarp-scooter.png` quando os assets forem sincronizados.
+**Isto ainda não é o MVP comercial.** Não há preços ao vivo, estoque, comissões, integração oficial de Shopee/Mercado Livre, login, pontos de servidor ou WhatsApp integrado. As ofertas exibidas são exemplos de categorias, claramente rotulados, sem link de compra nem valores inventados.
 
-**Não há promoções ao vivo, login, histórico, pontuação de servidor ou mensagens WhatsApp em funcionamento.** Nunca apresente exemplos como descontos reais nem conceda pontos sem verificação no backend.
+## URLs
+
+- Produção: https://black-friday-hunter.vercel.app/app/
+- Repositório: https://github.com/lenixeduardo/black-friday-hunter
+- Relatório: `QA_FIDELITY.md`
 
 ## Execução local
 
 ```bash
-git clone https://github.com/lenixeduardo/black-friday-hunter.git
-cd black-friday-hunter
+python -m pip install 'pytest>=8,<10' 'Pillow>=10,<13'
 python -m http.server 8765
-# Abrir http://localhost:8765/app/
+# Navegue para http://localhost:8765/app/
 ```
 
-## Verificação
+## QA
 
 ```bash
-python -m unittest discover -s tests -p "test_*.py" -v
-python -m json.tool app/manifest.webmanifest
+python -m pytest -q
 ```
 
-O workflow `.github/workflows/qa.yml` executa essas verificações a cada push/PR. Esses checks são estruturais e não substituem os testes no navegador ou as integrações reais.
+O workflow de GitHub Actions executa testes estruturais, de PWA e referências de assets. Testes visuais de 390 e 1440 px foram feitos localmente, não pela URL de produção.
 
 ## Agentes
 
-Consulte `AGENTS.md`, `DESIGN.md` e `.agents/skills/black-friday-hunter/SKILL.md`. O fluxo esperado é: **especificação → implementação → QA independente → correção → evidências**.
+Consulte `AGENTS.md`, `DESIGN.md` e `.agents/skills/black-friday-hunter/SKILL.md`.
 
-## Próximas integrações
+## Próximas etapas
 
-1. Sincronizar os PNGs originais da home e o restante do pacote local.
-2. Substituir a arte provisória da hero pelo Magikarp aprovado.
-3. Ligar Next.js/Supabase e fontes autorizadas de Shopee/Mercado Livre.
-4. Criar ledger de pontos no backend e validação antiabuso.
-5. Integrar WhatsApp Business Cloud API após consentimento, credenciais e templates.
-6. Validar experiência real em 390, 768 e 1440 px.
+1. Buscar fotos oficiais dos produtos por fonte autorizada e renderizar cards com dados verificáveis.
+2. Implementar autenticação e ledger antifraude de pontos no Supabase.
+3. Implementar integrações de afiliados da Shopee/Mercado Livre.
+4. Configurar alertas via WhatsApp Business Cloud API com consentimento explícito.
+5. Auditar a produção em navegador com capturas comparadas ao mockup e corrigir o que falta para 9,5/10.
