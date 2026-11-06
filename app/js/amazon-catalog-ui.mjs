@@ -60,13 +60,23 @@ if (grid) {
     const destination = product.productUrl || product.listUrl;
     if (destination) {
       const individual = Boolean(product.productUrl);
-      const link = node('a', 'amazon-list-link',
-        individual ? 'Ver produto na Amazon ↗' : 'Ver na lista de afiliado ↗');
+      const link = node('a', 'amazon-list-link');
       link.href = destination;
       link.target = '_blank';
       link.rel = 'noopener noreferrer sponsored';
       link.setAttribute('aria-label',
-        (individual ? 'Ver produto ' : 'Abrir lista para encontrar ') + product.name + ' na Amazon');
+        individual
+          ? 'Abrir anúncio individual de ' + product.name + ' na Amazon'
+          : 'Abrir lista de afiliado Amazon para procurar ' + product.name);
+      link.append(node('span', 'affiliate-cta-label', individual ? 'Ver produto Amazon' : 'Ver lista Amazon'));
+      const arrow = node('img', 'asset-icon affiliate-cta-icon');
+      arrow.src = '/app/assets/icons/external-link.svg';
+      arrow.width = 18;
+      arrow.height = 18;
+      arrow.alt = '';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.decoding = 'async';
+      link.append(arrow);
       info.append(link);
     } else {
       info.append(node('span', 'amazon-price-origin', 'Link individual pendente'));
