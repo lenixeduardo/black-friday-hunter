@@ -21,7 +21,7 @@ class StaticTests(unittest.TestCase):
         self.assertNotIn('R$ 289,90',APP)
         self.assertNotIn('2.780',APP)
         self.assertIn('Sem preço validado',APP)
-        self.assertIn('Aguardando API',APP)
+        self.assertIn('Sem oferta validada',APP)
     def test_reduced_motion(self):
         self.assertIn('prefers-reduced-motion:reduce',APP)
     def test_pwa_manifest(self):
