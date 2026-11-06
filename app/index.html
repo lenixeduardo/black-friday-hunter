@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="BF Hunter">
+<link rel="apple-touch-icon" sizes="180x180" href="/app/apple-touch-icon.png">
 <meta name="description" content="Black Friday Hunter — encontre oportunidades nas suas categorias e acompanhe alertas quando as integrações estiverem ativas.">
 <link rel="manifest" href="/app/manifest.webmanifest">
 <link rel="icon" type="image/png" href="/app/icon-192.png">
@@ -58,6 +64,7 @@ html,body{overflow-x:clip}
 <link rel="stylesheet" href="/app/css/brand-icon-assets-v7.css">
 <link rel="stylesheet" href="/app/css/affiliate-cta-v8.css">
 <link rel="stylesheet" href="/app/css/hero-variant-2-v9.css">
+<link rel="stylesheet" href="/app/css/pwa-v10.css">
 </head>
 <body>
 <a class="skip-link" href="#categorias">Ir para categorias de interesse</a>
@@ -142,8 +149,26 @@ html,body{overflow-x:clip}
 <div class="mini-ribbon" id="data-warning" role="status">Os itens acima são exemplos de categorias, não anúncios reais. Links de afiliado, preços e disponibilidade só aparecerão após validação da integração oficial.</div>
 <section class="reward" id="recompensas"><div class="reward-coins" aria-hidden="true"><img class="asset-icon asset-rewards-banner" src="/app/assets/icons/rewards-parcel.svg" width="40" height="40" alt=""></div><div><h2>Acumule pontos. Ganhe benefícios.</h2><p>Resgates de e-mail e WhatsApp serão disponibilizados após ativação das regras e consentimento.</p></div><div class="reward-options"><button data-modal="rewards" type="button"><img class="asset-icon small" src="/app/assets/icons/mail-envelope.svg" width="17" height="17" alt="" aria-hidden="true"> Notícias por e-mail</button><button data-modal="rewards" type="button"><img class="asset-icon small" src="/app/assets/icons/alert-message.svg" width="17" height="17" alt="" aria-hidden="true"> Alertas WhatsApp</button></div></section>
 <footer class="footer"><span>Black Friday Hunter · Prévia visual, sem integrações comerciais ativas.</span><span>Transparência: links afiliados serão identificados quando disponíveis.</span></footer></main>
-<div id="drawer-overlay" class="overlay" hidden></div><aside class="drawer" id="drawer" aria-label="Menu principal" aria-hidden="true" hidden><div class="drawer-top"><img src="/app/assets/logo-v4.webp" alt="Black Friday Hunter"/><button type="button" class="icon-btn" id="drawer-close" aria-label="Fechar menu"><svg class="icon"><use href="#i-cross"/></svg></button></div><nav class="links"><a href="#top"><svg class="icon"><use href="#i-house"/></svg> Início</a><a href="#amazon-curadoria"><svg class="icon"><use href="#i-store"/></svg> Seleção Amazon TCG</a><a href="#data-warning"><img class="asset-icon" src="/app/assets/icons/search-lens.svg" width="21" height="21" alt="" aria-hidden="true"> Critérios de exibição</a><a href="#categorias"><img class="asset-icon" src="/app/assets/icons/tcg-cards.svg" width="21" height="21" alt="" aria-hidden="true"> Meus interesses</a><a href="#recompensas"><img class="asset-icon" src="/app/assets/icons/rewards-parcel.svg" width="21" height="21" alt="" aria-hidden="true"> Recompensas</a><a href="#data-warning"><svg class="icon"><use href="#i-store"/></svg> Integrações</a></nav><p class="drawer-note">Esta prévia não contém promoções ao vivo, pontos utilizáveis ou envios automáticos. Nenhum dado de compra é coletado.</p></aside>
+<div id="drawer-overlay" class="overlay" hidden></div><aside class="drawer" id="drawer" aria-label="Menu principal" aria-hidden="true" hidden><div class="drawer-top"><img src="/app/assets/logo-v4.webp" alt="Black Friday Hunter"/><button type="button" class="icon-btn" id="drawer-close" aria-label="Fechar menu"><svg class="icon"><use href="#i-cross"/></svg></button></div><nav class="links"><a href="#top"><svg class="icon"><use href="#i-house"/></svg> Início</a><a href="#amazon-curadoria"><svg class="icon"><use href="#i-store"/></svg> Seleção Amazon TCG</a><a href="#data-warning"><img class="asset-icon" src="/app/assets/icons/search-lens.svg" width="21" height="21" alt="" aria-hidden="true"> Critérios de exibição</a><a href="#categorias"><img class="asset-icon" src="/app/assets/icons/tcg-cards.svg" width="21" height="21" alt="" aria-hidden="true"> Meus interesses</a><a href="#recompensas"><img class="asset-icon" src="/app/assets/icons/rewards-parcel.svg" width="21" height="21" alt="" aria-hidden="true"> Recompensas</a><a href="#data-warning"><svg class="icon"><use href="#i-store"/></svg> Integrações</a></nav>
+<button id="pwa-install" class="pwa-install-button" type="button" aria-describedby="pwa-install-copy">
+  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v9m-3-3 3 3 3-3"/></svg>
+  <span>Instalar aplicativo</span>
+</button>
+<p id="pwa-install-copy" class="pwa-install-copy">Acesso rápido pela tela inicial do seu dispositivo.</p>
+<p class="drawer-note">Esta prévia não contém promoções ao vivo, pontos utilizáveis ou envios automáticos. Nenhum dado de compra é coletado.</p></aside>
 <div id="modal-overlay" class="overlay" hidden></div><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" hidden><h2 id="modal-title">Em preparação</h2><p id="modal-body"></p><div class="modal-actions"><button class="btn red" id="modal-close">Entendi</button></div></section>
+<div id="pwa-offline-bar" class="pwa-offline-bar" role="status" aria-live="polite" hidden>
+  Você está offline. Os preços salvos são referências e podem ter mudado.
+</div>
+<section id="pwa-update-banner" class="pwa-bottom-banner" aria-label="Atualização do aplicativo" role="status" aria-live="polite" hidden>
+  <div><strong>Atualização disponível</strong><p>Uma nova versão do aplicativo está pronta.</p></div>
+  <button id="pwa-update-now" type="button">Atualizar</button>
+  <button id="pwa-update-dismiss" class="pwa-close" type="button" aria-label="Fechar aviso de atualização">Fechar</button>
+</section>
+<section id="pwa-install-guide" class="pwa-bottom-banner pwa-install-guide" aria-labelledby="pwa-guide-title" role="status" aria-live="polite" hidden>
+  <div><strong id="pwa-guide-title">Instalar Black Friday Hunter</strong><p id="pwa-guide-text">Abra o menu do navegador e escolha a opção de instalação.</p></div>
+  <button id="pwa-guide-dismiss" class="pwa-close" type="button">Fechar</button>
+</section>
 <script>
 const interest=document.querySelector('#interest');const cats=[...document.querySelectorAll('.cat')];const desc=document.querySelector('#hero-desc');const techText='Ofertas de tecnologia aparecerão após conectar fontes verificadas; seus alertas serão configuráveis.';
 function setInterest(value){const v=['TCG','TECH','GAMES','HOME'].includes(value)?value:'TCG';interest.value=v;cats.forEach(b=>b.classList.toggle('active',b.dataset.interest===v));document.querySelector('#amazon-curadoria').hidden=v!=='TCG';document.querySelector('#amazon-hero-link').hidden=v!=='TCG';desc.textContent=v==='TCG'?'Explore a seleção Amazon TCG e descubra produtos escolhidos para sua coleção. Confirme preços e disponibilidade na loja.':techText;document.querySelector('#tcg-boxes').querySelector('h2').lastChild.textContent=v==='TCG'?'Booster boxes e coleções':'Categorias monitoradas';refreshVerifiedOfferCards();if(v!=='TCG')document.querySelector('#data-warning').textContent='Conteúdo de categoria em modo demonstração. Não há produtos ou preços reais conectados.';else document.querySelector('#data-warning').textContent='Cartas e produtos TCG sem preço validado não aparecem na tela inicial. A seção de ofertas será exibida quando houver cotações verificadas.';try{localStorage.setItem('bfh-interest',v)}catch{}}
@@ -185,7 +210,7 @@ document.querySelector('#search-form').addEventListener('submit',e=>{
  window.dispatchEvent(new CustomEvent('bfh:search',{detail:{term}}));
  document.querySelector('#amazon-curadoria').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
 });
-if('serviceWorker' in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('/app/sw.js').catch(()=>{}));
 </script>
 <script type="module" src="/app/js/amazon-catalog-ui.mjs"></script>
+<script defer src="/app/js/pwa-client.js"></script>
 </body></html>

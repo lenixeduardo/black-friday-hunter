@@ -27,12 +27,15 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Validate responsive fidelity, product cards and interactions
         run: python scripts/qa_fidelity_v5.py --out artifacts/qa-v5
+      - name: Validate PWA manifest, SW, offline reloading and iOS install guidance
+        run: python scripts/qa_pwa_v10.py --out artifacts/qa-pwa-v10
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: black-friday-hunter-qa-v5
           path: |
             artifacts/qa-v5/
+            artifacts/qa-pwa-v10/
             app/assets/icons/*.svg
             app/assets/icons/preview.html
           retention-days: 14

@@ -1,0 +1,50 @@
+/* Installable PWA V10 — preserve the approved visual identity. */
+.pwa-install-button {
+  display:flex;align-items:center;justify-content:flex-start;gap:11px;
+  width:100%;min-height:48px;padding:12px 14px;margin:15px 0 5px;
+  background:#fff5f6;color:#920712;border:1px solid #efb9be;
+  border-radius:12px;font:800 13px/1.3 Inter,Arial,sans-serif;
+  text-align:left;cursor:pointer;
+}
+.pwa-install-button:hover {background:#ffe7e9}
+.pwa-install-button:focus-visible,
+.pwa-bottom-banner button:focus-visible{outline:3px solid #17171d;outline-offset:2px}
+.pwa-install-button .icon{width:22px;height:22px}
+.pwa-install-button:disabled{cursor:default;background:#f5f5f7;color:#595b64;border-color:#e3e4e7}
+.pwa-install-copy{margin:0 4px 12px;color:#696975;font-size:12px;line-height:1.4}
+.pwa-offline-bar{
+  position:fixed;z-index:80;left:50%;top:calc(10px + env(safe-area-inset-top));
+  width:max-content;max-width:calc(100vw - 24px);
+  padding:11px 17px;transform:translateX(-50%);
+  border:1px solid #e0bf85;border-radius:12px;
+  background:#fff7e7;color:#66410a;
+  box-shadow:0 8px 20px #27180a21;
+  font:650 12px/1.5 Inter,Arial,sans-serif;text-align:center;
+}
+.pwa-bottom-banner{
+  position:fixed;z-index:90;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;
+  transform:translateX(-50%);
+  display:flex;align-items:center;gap:14px;
+  width:min(540px,calc(100vw - 24px));
+  background:#fff;border:1px solid #e9d7d9;border-radius:18px;
+  box-shadow:0 13px 45px #1d111333;
+  padding:17px 19px;color:#17171d;
+}
+.pwa-bottom-banner[hidden],.pwa-offline-bar[hidden]{display:none!important}
+.pwa-bottom-banner > div{flex:1;min-width:0}
+.pwa-bottom-banner strong{display:block;font:800 14px/1.3 Inter,Arial,sans-serif}
+.pwa-bottom-banner p{font:500 12px/1.5 Inter,Arial,sans-serif;color:#55545e;margin:5px 0 0}
+.pwa-bottom-banner button{
+  flex:none;min-height:44px;padding:10px 13px;
+  border:0;border-radius:10px;background:#df0c1e;color:#fff;
+  font:800 12px/1.2 Inter,Arial,sans-serif;cursor:pointer;
+}
+.pwa-bottom-banner button.pwa-close{background:#f1f1f3;color:#373742}
+.pwa-install-guide{max-width:480px}
+@media (max-width:560px) {
+  .pwa-bottom-banner{align-items:stretch;flex-wrap:wrap;padding:15px}
+  .pwa-bottom-banner > div{flex:1 1 100%}
+  .pwa-bottom-banner button{flex:1}
+  .pwa-offline-bar{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.pwa-bottom-banner{scroll-behavior:auto}}
