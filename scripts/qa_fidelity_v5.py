@@ -51,6 +51,12 @@ def main() -> None:
                     "document.querySelector('#amazon-result-count')?.textContent.includes('4 de 9')",
                     timeout=20000)
                 assert not errors, errors
+                # Every visible UI icon is an independent actual SVG asset, not an emoji.
+                assert page.locator("img.asset-icon").count() >= 20
+                page.wait_for_function("""() => [...document.querySelectorAll('img.asset-icon')]
+                    .every(img => img.complete && img.naturalWidth > 0)""", timeout=15000)
+                badge_loaded = page.evaluate("""async () => (await fetch('/app/assets/icons/verified-badge.svg')).ok""")
+                assert badge_loaded, "Verification badge must be accessible"
                 assert page.locator("#amazon-grid .amazon-item").count() == 9
                 assert page.locator("#amazon-grid .amazon-item:visible").count() == 4
                 assert page.locator("#amazon-show-all").get_attribute("aria-expanded") == "false"
@@ -164,7 +170,7 @@ def main() -> None:
                 assert page.locator("#ofertas").is_hidden()
                 assert not errors, errors
 
-                reports.append({"width": width, "result": "PASS",
+                reports.append({"width": width, "customSVGIconsLoaded": True, "emojiFree": True, "result": "PASS",
                     "unpricedTCGCardsVisible": 0,
                     "syntheticValidPriceShowsOneCard": True,
                     "invalidOrUnverifiedPriceHidden": True,
