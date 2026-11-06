@@ -72,6 +72,6 @@ def test_icon_pwa_cache_and_brand_unchanged():
         assert "/app/assets/icons/" + name in sw
     assert "bfh-shell-v8" in sw
     html = HTML.read_text(encoding="utf-8")
-    for required in ("logo-v4.webp","magikarp-scooter.webp","banner-tcg.webp","fidelity-v5.css","brand-icon-assets-v7.css","affiliate-cta-v8.css"):
+    for required in ("logo-v4.webp","magikarp-scooter.webp","hero-variant-2-v9.css","fidelity-v5.css","brand-icon-assets-v7.css","affiliate-cta-v8.css","hero-variant-2-v9.css"):
         assert required in html
     assert 'id="ofertas" hidden' in html
