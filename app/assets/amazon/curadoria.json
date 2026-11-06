@@ -4,7 +4,7 @@
   "merchant": "Amazon Brasil",
   "status": "manual_unverified",
   "pricing": "not_verified",
-  "note": "A imagem é um criativo, não confirma estoque ou preço; todos os CTAs abrem a lista, não itens individualmente.",
+  "note": "Valores transcritos da arte fornecida pelo usuário e não confirmados como preços atuais; links por item dependem da Creators API e dos ASINs da lista.",
   "items": [
     {
       "slug": "colecao-parceiro-inicial",
@@ -12,7 +12,10 @@
       "category": "Coleção especial",
       "image": "/app/assets/amazon/colecao-parceiro-inicial.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 130.99,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "reinado-delta-bundle",
@@ -20,7 +23,10 @@
       "category": "Booster bundle",
       "image": "/app/assets/amazon/reinado-delta-bundle.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 239.9,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "celebracao-poster",
@@ -28,7 +34,10 @@
       "category": "Box colecionável",
       "image": "/app/assets/amazon/celebracao-poster.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 149.99,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "reinado-delta-atb",
@@ -36,7 +45,10 @@
       "category": "Caixa especial",
       "image": "/app/assets/amazon/reinado-delta-atb.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 399.99,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "reinado-delta-sleeved",
@@ -44,7 +56,10 @@
       "category": "Booster avulso",
       "image": "/app/assets/amazon/reinado-delta-sleeved.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 13.99,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "celebracao-bundle",
@@ -52,7 +67,10 @@
       "category": "Booster bundle",
       "image": "/app/assets/amazon/celebracao-bundle.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 319.9,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "reinado-delta-box",
@@ -60,7 +78,10 @@
       "category": "Booster box",
       "image": "/app/assets/amazon/reinado-delta-box.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 419.9,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "caos-ascendente-box",
@@ -68,7 +89,10 @@
       "category": "Booster box",
       "image": "/app/assets/amazon/caos-ascendente-box.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 231.94,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "escuridao-sleeved",
@@ -76,7 +100,10 @@
       "category": "Booster avulso",
       "image": "/app/assets/amazon/escuridao-sleeved.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": 13.99,
+      "asin": null,
+      "product_url": null
     },
     {
       "slug": "celebracao-blister",
@@ -84,7 +111,10 @@
       "category": "Blister colecionável",
       "image": "/app/assets/amazon/celebracao-blister.webp",
       "price_verified": false,
-      "url": "https://amzn.to/4846Sow"
+      "url": "https://amzn.to/4846Sow",
+      "poster_price_brl": null,
+      "asin": null,
+      "product_url": null
     }
   ]
 }
