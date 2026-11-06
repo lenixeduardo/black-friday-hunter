@@ -55,9 +55,12 @@ def main() -> None:
                 assert page.locator("#amazon-curadoria").get_attribute("data-verified") == "false"
                 assert page.locator("#tcg-boxes img").count() == 3
                 assert page.locator("#singles img").count() == 3
-                images_loaded = page.evaluate("""() => [...document.querySelectorAll('#tcg-boxes img, #singles img')]
-                    .every(img => img.complete && img.naturalWidth > 0)""")
-                assert images_loaded, f"Broken reference image at width {width}"
+                # Trigger offscreen lazy images before asserting their actual load state.
+                page.evaluate("""() => [...document.querySelectorAll('#tcg-boxes img, #singles img')]
+                    .forEach(img => { img.loading = 'eager'; })""")
+                page.wait_for_function("""() => [...document.querySelectorAll('#tcg-boxes img, #singles img')]
+                    .every(img => img.complete && img.naturalWidth > 0)""", timeout=15000)
+                images_loaded = True
                 overflow = page.evaluate("document.documentElement.scrollWidth - innerWidth")
                 assert overflow <= 2, f"Horizontal page overflow: {overflow} at {width}"
                 sizes = page.evaluate("""() => {
